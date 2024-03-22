@@ -1,62 +1,67 @@
+/* Base styling for overall layout */
 .container {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100vh; /* Ensure the layout takes at least the full height of the viewport */
+    margin: 10px; /* Reset any default margin */
+    padding: 10px; /* Reset any default padding */
 }
 
 .chatRoot {
-    flex: 1;
     display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+    padding-top: 20px;
+}
+.commandsContainer {
+    display: flex; /* Establishes this container as a flex container */
+    flex-direction: row; /* Aligns children (commands) horizontally */
+    justify-content: flex-end; /* Aligns items to the right side of the container */
+    width: 100%; /* Ensures the container spans the full width of its parent */
+    padding-right: 20px; /* Adds some padding on the right for spacing from the edge */
 }
 
-.chatContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-.chatEmptyState {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-height: 1024px;
-    padding-top: 60px;
-}
-
-.chatEmptyStateTitle {
-    font-size: 4rem;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-
-.chatEmptyStateSubtitle {
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-@media only screen and (max-height: 780px) {
-    .chatEmptyState {
-        padding-top: 0;
+/* Ensure chat container and analysis panel share the screen equally when both are visible */
+@media (min-width: 768px) {
+    .chatRoot {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: stretch;
+        padding-top: 20px;
     }
 
-    .chatEmptyStateTitle {
-        font-size: 3rem;
-        margin-bottom: 0px;
+    .chatContainer,
+    .chatAnalysisPanel {
+        flex: 1; /* Allocate equal space to both containers */
+        min-width: 0;
+        flex-direction: column;
+        overflow: auto;
+        height: 100%;
+    }
+
+    .chatContainer {
+        margin-right: 10px; /* Optional: Add some space between the two panels */
+    }
+
+    .chatAnalysisPanel {
+        margin-left: 10px; /* Optional: Add some space between the two panels */
     }
 }
 
+/* Responsive and adaptive chat message stream */
 .chatMessageStream {
-    flex-grow: 1;
-    max-height: 1024px;
-    max-width: 1028px;
-    width: 100%;
+    max-height: calc(100vh - 40px);
     overflow-y: auto;
+    width: 100%;
     padding-left: 24px;
     padding-right: 24px;
     display: flex;
@@ -65,14 +70,15 @@
 
 .chatMessageGpt {
     margin-bottom: 20px;
-    max-width: 80%;
+    max-width: 100%;
     display: flex;
-    min-width: 500px;
+    min-width: initial;
 }
 
 .chatMessageGptMinWidth {
-    max-width: 500px;
+    max-width: 100%;
     margin-bottom: 20px;
+    min-width: initial;
 }
 
 .chatInput {
@@ -84,34 +90,20 @@
     padding-left: 24px;
     padding-right: 24px;
     width: 100%;
-    max-width: 1028px;
     background: #f2f2f2;
 }
 
-.chatAnalysisPanel {
-    flex: 1;
-    overflow-y: auto;
-    max-height: 89vh;
-    margin-left: 20px;
-    margin-right: 20px;
-}
+/* Additional responsive adjustments for mobile screens */
+@media (max-width: 767px) {
+    .chatContainer,
+    .chatAnalysisPanel {
+        width: 100%; /* Full width for smaller screens */
+        max-width: none; /* Remove max-width constraint */
+    }
 
-.chatSettingsSeparator {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-}
-
-.loadingLogo {
-    font-size: 28px;
-}
-
-.commandsContainer {
-    display: flex;
-    align-self: flex-end;
-}
-
-.commandButton {
-    margin-right: 20px;
-    margin-bottom: 20px;
+    /* Adjust layout for mobile to stack chat and analysis panels */
+    .chatRoot {
+        flex-direction: column;
+        width: 100%;
+    }
 }

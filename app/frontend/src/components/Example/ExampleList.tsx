@@ -3,9 +3,10 @@ import { Example } from "./Example";
 import styles from "./Example.module.css";
 
 const DEFAULT_EXAMPLES: string[] = [
-    "What is included in my Northwind Health Plus plan that is not in standard?",
-    "What happens in a performance review?",
-    "What does a Product Manager do?"
+    "What is CD-64 in White Rock (Comprehensive Development 64)?",
+    "Can I walk my dog on the promenade?",
+    "Do I need a permit to build a storage shed in my backyard?",
+    "Can I have a fire pit in my backyard?"
 ];
 
 const GPT4V_EXAMPLES: string[] = [

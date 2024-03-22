@@ -260,15 +260,22 @@ const Chat = () => {
         makeApiRequest(example);
     };
 
+    const [panelKey, setPanelKey] = useState(0);
+
     const onShowCitation = (citation: string, index: number) => {
-        if (activeCitation === citation && activeAnalysisPanelTab === AnalysisPanelTabs.CitationTab && selectedAnswer === index) {
+        setActiveCitation(citation);
+        setActiveAnalysisPanelTab(AnalysisPanelTabs.CitationTab);
+        setSelectedAnswer(index);
+        // Increment the panelKey to force re-render
+        setPanelKey(prevKey => prevKey + 1);
+
+        /*if (activeCitation === citation && activeAnalysisPanelTab === AnalysisPanelTabs.CitationTab && selectedAnswer === index) {
             setActiveAnalysisPanelTab(undefined);
         } else {
             setActiveCitation(citation);
             setActiveAnalysisPanelTab(AnalysisPanelTabs.CitationTab);
         }
-
-        setSelectedAnswer(index);
+        setSelectedAnswer(index);*/
     };
 
     const onToggleTab = (tab: AnalysisPanelTabs, index: number) => {
@@ -291,10 +298,22 @@ const Chat = () => {
                 <div className={styles.chatContainer}>
                     {!lastQuestionRef.current ? (
                         <div className={styles.chatEmptyState}>
-                            <SparkleFilled fontSize={"120px"} primaryFill={"rgba(115, 118, 225, 1)"} aria-hidden="true" aria-label="Chat logo" />
-                            <h1 className={styles.chatEmptyStateTitle}>Chat with your data</h1>
-                            <h2 className={styles.chatEmptyStateSubtitle}>Ask anything or try an example</h2>
-                            <ExampleList onExampleClicked={onExampleClicked} useGPT4V={useGPT4V} />
+                            {/* <SparkleFilled fontSize={"120px"} primaryFill={"rgba(115, 118, 225, 1)"} aria-hidden="true" aria-label="Chat logo" />
+                         <h1 className={styles.chatEmptyStateTitle}>Chat with your data</h1> */}
+                            {/* <h2 className={styles.chatEmptyStateSubtitle}>Ask anything or try an example</h2> */}
+                            <p className={styles.note}>
+                                <em>
+                                    <strong>Important Note:</strong>
+                                </em>{" "}
+                                This chatbot, powered by Microsoft AI is specifically designed to provide information on City's bylaws and regulations. The
+                                responses provided by this tool are meant to offer informal guidance and should not be considered a substitute for formal advice
+                                from qualified city officials. It is crucial to consult with appropriate authorities for precise and authoritative information.
+                                To ensure accurate and helpful responses, please phrase your questions clearly and specifically in relation to the topic at
+                                hand.
+                            </p>
+                            <div className={styles.chatExample}>
+                                <ExampleList onExampleClicked={onExampleClicked} useGPT4V={useGPT4V} />
+                            </div>
                         </div>
                     ) : (
                         <div className={styles.chatMessageStream}>
@@ -368,10 +387,11 @@ const Chat = () => {
 
                 {answers.length > 0 && activeAnalysisPanelTab && (
                     <AnalysisPanel
+                        key={panelKey}
                         className={styles.chatAnalysisPanel}
                         activeCitation={activeCitation}
                         onActiveTabChanged={x => onToggleTab(x, selectedAnswer)}
-                        citationHeight="810px"
+                        citationHeight="1024px"
                         answer={answers[selectedAnswer][1]}
                         activeTab={activeAnalysisPanelTab}
                     />

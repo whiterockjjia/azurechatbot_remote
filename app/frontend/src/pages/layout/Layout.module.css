@@ -1,78 +1,83 @@
 .layout {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    align-items: center; /* Ensures content is centered */
+    min-height: 100vh; /* Full height of the viewport */
+    width: 100%; /* Full width */
 }
 
 .header {
-    background-color: #222222;
-    color: #f2f2f2;
+    display: flex;
+    justify-content: space-between; /* Distributes space between header items */
+    align-items: center; /* Aligns items vertically in the center */
+    width: 100%; /* Full width */
+    background-color: #002f65; /* Deep blue background for the header */
+    color: #f2f2f2; /* Light text color for contrast */
+    padding: 10px 20px; /* Adds padding inside the header for spacing */
+    box-sizing: border-box; /* Ensures padding does not affect overall width */
 }
 
 .headerContainer {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-right: 12px;
-    margin-left: 12px;
-}
-
-.headerTitleContainer {
-    display: flex;
-    align-items: center;
-    margin-right: 40px;
-    color: #f2f2f2;
-    text-decoration: none;
-}
-
-.headerLogo {
-    height: 40px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; /* Aligns items vertically in the center */
+    width: 100%; /* Utilizes full width for spacing */
 }
 
 .headerTitle {
-    margin-left: 12px;
-    font-weight: 600;
+    display: flex;
+    align-items: center; /* Centers title vertically with the logo */
+    font-size: 1.5rem; /* Increases font size for visibility */
+    color: #f2f2f2; /* Light text color for readability */
+    white-space: nowrap; /* Prevents the title from wrapping */
 }
 
+/* Removes the list style and padding for nav items */
 .headerNavList {
     display: flex;
     list-style: none;
-    padding-left: 0;
+    padding: 0;
+    margin: 0; /* Removes default margin */
 }
 
-.headerNavPageLink {
-    color: #f2f2f2;
-    text-decoration: none;
-    opacity: 0.75;
-
-    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    transition-duration: 500ms;
-    transition-property: opacity;
-}
-
-.headerNavPageLink:hover {
-    opacity: 1;
-}
-
+.headerNavPageLink,
 .headerNavPageLinkActive {
     color: #f2f2f2;
     text-decoration: none;
+    margin: 0 10px; /* Adds horizontal spacing between nav items */
+    opacity: 0.75;
+    transition: opacity 300ms ease-in-out; /* Smooth transition for hover effect */
 }
 
+.headerNavPageLink:hover {
+    opacity: 1; /* Full opacity on hover for emphasis */
+}
+
+/* Adjusts the margin for items specifically needing it */
 .headerNavLeftMargin {
     margin-left: 20px;
 }
 
-.headerRightText {
-    font-weight: normal;
-    margin-left: 40px;
-}
-
-.microsoftLogo {
-    height: 23px;
-    font-weight: 600;
-}
-
+/* Styling for logos to ensure they fit well within the header */
+.microsoftLogo,
 .githubLogo {
-    height: 20px;
+    height: 20px; /* Standardizes logo height */
+    margin-right: 10px; /* Adds spacing to the right of logos */
+}
+
+@media (max-width: 768px) {
+    /* Adjusts header layout for smaller screens */
+    .header {
+        flex-direction: column; /* Stacks items vertically on small screens */
+        padding: 10px; /* Adjusts padding for compact layout */
+    }
+
+    .headerContainer {
+        flex-direction: column; /* Aligns header content vertically */
+    }
+
+    .headerTitle {
+        margin-bottom: 10px; /* Adds spacing below the title for separation */
+    }
 }
