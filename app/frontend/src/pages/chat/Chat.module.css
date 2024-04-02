@@ -27,6 +27,15 @@
     padding-right: 20px; /* Adds some padding on the right for spacing from the edge */
 }
 
+.importantNoteContainer {
+    background-color: #fffbcc; /* Light yellow background for visibility */
+    border-left: 4px solid #ffcc00; /* Contrasting left border */
+    padding: 20px; /* Sufficient padding for readability */
+    margin: 20px 0; /* Vertical margin for spacing */
+    display: flex;
+    align-items: center; /* Aligns icon with text */
+}
+
 /* Ensure chat container and analysis panel share the screen equally when both are visible */
 @media (min-width: 768px) {
     .chatRoot {

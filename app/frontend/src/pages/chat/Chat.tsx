@@ -301,16 +301,18 @@ const Chat = () => {
                             {/* <SparkleFilled fontSize={"120px"} primaryFill={"rgba(115, 118, 225, 1)"} aria-hidden="true" aria-label="Chat logo" />
                          <h1 className={styles.chatEmptyStateTitle}>Chat with your data</h1> */}
                             {/* <h2 className={styles.chatEmptyStateSubtitle}>Ask anything or try an example</h2> */}
-                            <p className={styles.note}>
-                                <em>
-                                    <strong>Important Note:</strong>
-                                </em>{" "}
-                                This chatbot, powered by Microsoft AI is specifically designed to provide information on City's bylaws and regulations. The
-                                responses provided by this tool are meant to offer informal guidance and should not be considered a substitute for formal advice
-                                from qualified city officials. It is crucial to consult with appropriate authorities for precise and authoritative information.
-                                To ensure accurate and helpful responses, please phrase your questions clearly and specifically in relation to the topic at
-                                hand.
-                            </p>
+                            <div className={styles.importantNoteContainer}>
+                                <p className={styles.note}>
+                                    <em>
+                                        <strong>Important Note:</strong>
+                                    </em>{" "}
+                                    This chatbot, powered by Microsoft AI is specifically designed to provide information on City's bylaws and regulations. The
+                                    responses provided by this tool are meant to offer informal guidance and should not be considered a substitute for formal
+                                    advice from qualified city officials. It is crucial to consult with appropriate authorities for precise and authoritative
+                                    information. To ensure accurate and helpful responses, please phrase your questions clearly and specifically in relation to
+                                    the topic at hand.
+                                </p>
+                            </div>
                             <div className={styles.chatExample}>
                                 <ExampleList onExampleClicked={onExampleClicked} useGPT4V={useGPT4V} />
                             </div>
