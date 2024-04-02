@@ -129,7 +129,7 @@ const Chat = () => {
 
         error && setError(undefined);
         setIsLoading(true);
-        setActiveCitation(undefined);
+        /*setActiveCitation(undefined);*/
         /*setActiveAnalysisPanelTab(undefined);*/
 
         const token = client ? await getToken(client) : undefined;
